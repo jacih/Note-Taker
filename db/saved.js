@@ -7,7 +7,6 @@ const readNote = util.promisify(fs.readFile);
 const writeNote = util.promisify(fs.writeFile);
 
 class Save {
-  
   write(note) {
     return writeNote('db/db.json', JSON.stringify(note));
   }
@@ -25,7 +24,7 @@ class Save {
     return parsed;
     });
   }
-  addNote(note) {
+  postNote(note) {
     const { title, text } = note;
     if (!title || !text) {
       throw new Error('Cannot add a note with no text or title');

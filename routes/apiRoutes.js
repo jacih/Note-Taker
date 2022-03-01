@@ -1,4 +1,3 @@
-// Dependencies
 const router = require('express').Router();
 const saved = require('../db/saved');
 
@@ -9,7 +8,7 @@ router.get('/notes', function (req, res) {
 });
 
 router.post('/notes', (req, res) => {
-  saved.addNote(req.body)
+  saved.postNote(req.body)
     .then((note) => res.json(note))
     .catch(err => res.status(500).json(err));
 });
