@@ -1,15 +1,15 @@
 const router = require('express').Router();
-const saved = require('../db/saved');
+const saved = require('../util/helpers');
 
 router.get('/notes', function (req, res) {
   saved.getNotes()
-    .then(notes => res.json(notes))
+    .then(data => res.json(data))
     .catch(err => res.status(500).json(err));
 });
 
 router.post('/notes', (req, res) => {
-  saved.postNote(req.body)
-    .then((note) => res.json(note))
+  saved.saveNote(req.body)
+    .then((data) => res.json(data))
     .catch(err => res.status(500).json(err));
 });
 
