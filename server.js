@@ -1,6 +1,9 @@
+const fs = require('fs');
 const express = require('express');
-const apiRoutes = require('./routes/apiRoutes');
+const apiRoutes = require('./routes/apiRoutes.js');
 const htmlRoutes = require('./routes/htmlRoutes');
+const path = require('path');
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -10,6 +13,4 @@ app.use(express.static('public'));
 app.use('/api', apiRoutes);
 app.use('/', htmlRoutes);
 
-app.listen(PORT, () => {
-  console.log(`API server is ready on port ${PORT}!`);
-});
+app.listen(PORT, () =>  console.log(`App listening at http://localhost:${PORT}`));

@@ -1,22 +1,37 @@
 const router = require('express').Router();
-const saved = require('../util/helpers');
+const uuid = require('../util/uuid');
+const { readFromFile, readAndAppend, writeToFile } = require('../util/helpers');
 
-router.get('/notes', function (req, res) {
-  saved.getNotes()
-    .then(data => res.json(data))
-    .catch(err => res.status(500).json(err));
+router.get('/notes', (req, res) =>
+  readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)))
+);
+
+router.post('/', (req, res) => {
+  console.log(req.body);
+  const { title, text } = req.body;
+  if (req.body) {
+    const newNote = {
+      id: uuid(),
+      title,
+      text,
+    };
+
+  readAndAppend(newNote, './db/db.json');
+  res.json('Note added successfully');
+  } else {
+    res.error('Error in adding note');
+  }
 });
 
-router.post('/notes', (req, res) => {
-  saved.saveNote(req.body)
-    .then((data) => res.json(data))
-    .catch(err => res.status(500).json(err));
-});
-
-router.delete('/notes/:id', function (req, res) {
-  saved.deleteNote(req.params.id)
-    .then(() => res.json({ ok: true }))
-    .catch(err => res.status(500).json(err));
+router.delete(`/router/:id`, (req, res) => {
+  const noteId = req.params.id;
+  readFromFile('./db/db.json')
+    .then((data) => JSON.parse(data))
+    .then((json) => {
+      const result = json.filter((note) => note.id !== noteId);  
+      writeToFile('./db/db.json', result)
+      res.json(`item ${noteId} has been deleted`);
+    });
 });
 
 module.exports = router;

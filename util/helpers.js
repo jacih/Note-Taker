@@ -1,46 +1,25 @@
-// Dependencies
-const util = require('util');
 const fs = require('fs');
-const uuidv4 = require('uuid');
+const { stringify } = require('querystring');
+const util = require('util');
 
-const readNote = util.promisify(fs.readFile);
-const writeNote = util.promisify(fs.writeFile);
+const readFromFile = util.promisify(fs.readFile);
 
-class Save {
-  write(note) {
-    return writeNote('db/db.json', JSON.stringify(note));
-  }
-  read() {
-    return readNote('db/db.json', 'utf8');
-  }
-  getNotes() {
-    return this.read().then(notes => {
-      let parsed;
-      try {
-        parsed = [].concat(JSON.parse(notes));
-      } catch (err) {
-        parsed = [];
-      }
-    return parsed;
-    });
-  }
-  postNote(note) {
-    const { title, text } = note;
-    if (!title || !text) {
-      throw new Error('Cannot add a note with no text or title');
+
+const writeToFile = (destination, content) =>
+  fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>
+    err ? console.error(err) : console.info(`\nData written to ${destination}`)
+  );
+
+const readAndAppend = (content, file) => {
+  fs.readFile(file, 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+    } else {
+      const parsedData = JSON.parse(data);
+      parsedData.push(content);
+      writeToFile(file, parsedData);
     }
-  const newNote = { title, text, id: uuidv4() };
-  return this.getNotes()
-    .then(notes => [...notes, newNote])
-    .then(updated => this.write(updated))
-    .then(() => newNote);
-  }
+  });
+};
 
-  deleteNote(id) {
-    return this.getNotes()
-      .then(notes => notes.filter(note => note.id !== id))
-      .then(filtered => this.write(filtered));
-  }
-}
-
-module.exports = new Save();
+module.exports = { readFromFile, writeToFile, readAndAppend };
