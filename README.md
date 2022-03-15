@@ -20,6 +20,10 @@ Video Walkthrough:
 - [GoogleDrive](https://drive.google.com/file/d/14paegzESSi2fMXuP_O2ZefPQuW2zLPwF/view)
 - [Youtube](https://youtu.be/cIwGv8ImxuQ)
 
+Note Page Mock-Up:
+![Notes_page_ADDNOTE_mockup](https://user-images.githubusercontent.com/97176042/158379746-7c6b0ea3-b4eb-44ac-9f8c-1061793e9334.png)
+![Notes_page_Successful_ADD NOTE_mockup](https://user-images.githubusercontent.com/97176042/158379776-c7ade777-668e-498a-84f9-2e6e1babb7c8.png)
+
 ## [Installation](#table-of-contents)
 When a user visits the landing page, they are able to click a ‘Get Started’ button to be redirected to a notes webpage. The notes page contains an aside on the left of the page with existing notes populated in a list; each note has the option to delete through clicking of the trashcan favicon on the note’s row. New notes can be added through click of the plus favicon, which clears any text in the ‘Note Title’ and ‘Note Text’ input fields in the main section of the screen. When both a title and text have been added, a save favicon appears beside the plus favicon; upon click, the new note is added to the list of saved notes of the left of the screen. When a saved note is clicked, the content appears in the input field. Users can navigate back to the landing page by clicking the Note Taker link in the top left corner.
 
