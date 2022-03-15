@@ -17,8 +17,8 @@ The Note Taker application is a simple express.js website for creating, saving a
 
 ## [Mock-Up](#table-of-contents)
 Video Walkthrough:
-[GoogleDrive](https://drive.google.com/file/d/14paegzESSi2fMXuP_O2ZefPQuW2zLPwF/view)
-[Youtube](https://youtu.be/cIwGv8ImxuQ)
+- [GoogleDrive](https://drive.google.com/file/d/14paegzESSi2fMXuP_O2ZefPQuW2zLPwF/view)
+- [Youtube](https://youtu.be/cIwGv8ImxuQ)
 
 ## [Installation](#table-of-contents)
 When a user visits the landing page, they are able to click a ‘Get Started’ button to be redirected to a notes webpage. The notes page contains an aside on the left of the page with existing notes populated in a list; each note has the option to delete through clicking of the trashcan favicon on the note’s row. New notes can be added through click of the plus favicon, which clears any text in the ‘Note Title’ and ‘Note Text’ input fields in the main section of the screen. When both a title and text have been added, a save favicon appears beside the plus favicon; upon click, the new note is added to the list of saved notes of the left of the screen. When a saved note is clicked, the content appears in the input field. Users can navigate back to the landing page by clicking the Note Taker link in the top left corner.
